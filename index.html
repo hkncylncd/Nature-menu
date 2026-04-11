@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nature Coffee Home — 3rd Wave Coffee &amp; Nargile Menüsü, Adana">
+  <meta name="theme-color" content="#1a2e1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Nature Coffee Home — Menü</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+    ============================================ */
+    :root {
+      --green-deep:   #1a2e1a;
+      --green-mid:    #2d4a2d;
+      --green-light:  #3d6b3d;
+      --black-warm:   #0d0d0d;
+      --black-card:   #131813;
+      --black-card2:  #0f150f;
+      --gold:         #c9a84c;
+      --gold-light:   #e0be6e;
+      --gold-dim:     rgba(201,168,76,0.18);
+      --cream:        #f5f0e8;
+      --cream-muted:  rgba(245,240,232,0.6);
+      --cream-faint:  rgba(245,240,232,0.18);
+      --badge-red:    #a02020;
+      --r-card:       14px;
+      --r-badge:      6px;
+      --shadow:       0 4px 24px rgba(0,0,0,0.55);
+      --tr:           0.28s ease;
+    }
+
+    /* ============================================
+       RESET
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 52px;
+    }
+
+    body {
+      background: var(--black-warm);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; }
+
+    /* ============================================
+       PAGE WRAPPER — phone width, centered on desktop
+    ============================================ */
+    .pw {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--black-warm);
+      min-height: 100vh;
+    }
+
+    /* desktop shadow handled in responsive block below */
+
+    /* ============================================
+       SITE HEADER
+    ============================================ */
+    .site-header {
+      background: linear-gradient(175deg, #060e06 0%, #0e1e0e 60%, var(--green-deep) 100%);
+      padding: 2.25rem 1.5rem 0;
+      text-align: center;
+    }
+
+    .header-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      padding-bottom: 1.75rem;
+    }
+
+    .logo {
+      width: 88px;
+      height: 88px;
+      filter: drop-shadow(0 0 18px rgba(201,168,76,0.35));
+    }
+
+    .logo-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+      border: 2px solid rgba(201,168,76,0.5);
+      filter: drop-shadow(0 0 16px rgba(201,168,76,0.3));
+    }
+
+    .site-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.3px;
+      line-height: 1.15;
+    }
+
+    .site-sub {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .header-hero {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+    }
+
+    .header-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .header-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(6,14,6,0.3) 0%,
+        rgba(13,13,13,0.92) 100%
+      );
+    }
+
+    /* ============================================
+       CATEGORY NAV
+    ============================================ */
+    .cat-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .cat-nav::-webkit-scrollbar { display: none; }
+
+    .cat-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      padding: 0 1rem;
+      height: 52px;
+      white-space: nowrap;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--cream-muted);
+      text-decoration: none;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      border-bottom: 2.5px solid transparent;
+      flex-shrink: 0;
+      transition: color var(--tr), border-color var(--tr);
+    }
+
+    .cat-nav a .em { font-size: 1rem; }
+
+    .cat-nav a:hover  { color: var(--cream); }
+    .cat-nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ============================================
+       CATEGORY SECTION
+    ============================================ */
+    .cat-section {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .cat-section.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Hero banner */
+    .cat-hero {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    #nargile .cat-hero { height: 310px; }
+
+    .cat-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .cat-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(0,0,0,0.08) 0%,
+        rgba(13,13,13,0.88) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.4rem 1.25rem;
+    }
+
+    .cat-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    }
+
+    #nargile .cat-hero-title {
+      font-size: 2.1rem;
+    }
+
+    .cat-hero-desc {
+      font-size: 0.78rem;
+      color: var(--cream-muted);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* Gold accent line below hero */
+    .cat-accent {
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-deep), var(--gold), var(--green-deep));
+    }
+
+    /* ============================================
+       MENU GRID
+    ============================================ */
+    .menu-grid {
+      padding: 1rem 0.9rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    #nargile .menu-grid { gap: 0.8rem; }
+
+    /* ============================================
+       MENU CARD
+    ============================================ */
+    .card {
+      background: var(--black-card);
+      border-radius: var(--r-card);
+      border-left: 3px solid var(--gold);
+      padding: 0.9rem 1rem 0.9rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      box-shadow: var(--shadow);
+      min-height: 52px;
+      transition: transform var(--tr), box-shadow var(--tr);
+    }
+
+    #nargile .card {
+      background: linear-gradient(130deg, #16201a 0%, var(--black-card) 100%);
+      border-left: 4px solid var(--gold);
+      padding: 1.1rem 1rem 1.1rem 1.15rem;
+    }
+
+    @media (hover: hover) {
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.65), 0 0 24px rgba(201,168,76,0.1);
+      }
+    }
+
+    .card-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--cream);
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    #nargile .item-name { font-size: 1rem; }
+
+    .item-price {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gold);
+      white-space: nowrap;
+      padding-top: 2px;
+      letter-spacing: 0.3px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+    }
+
+    /* ============================================
+       BADGES
+    ============================================ */
+    .b {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.18rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.18rem 0.48rem;
+      border-radius: var(--r-badge);
+      letter-spacing: 0.25px;
+      line-height: 1;
+    }
+
+    .b-pop {
+      background: linear-gradient(120deg, #c9a84c, #e0be6e);
+      color: #1a1408;
+    }
+
+    .b-hot {
+      background: linear-gradient(120deg, #7a1a0a, #b02a10);
+      color: #fff;
+    }
+
+    /* ============================================
+       SECTION SPACER
+    ============================================ */
+    .gap { height: 1.75rem; }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: linear-gradient(180deg, #07100a 0%, #040808 100%);
+      border-top: 1px solid rgba(201,168,76,0.22);
+      padding: 2.5rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    .ft-logo {
+      margin-bottom: 1.25rem;
+    }
+
+    .ft-logo .logo {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto;
+      opacity: 0.75;
+    }
+
+    .ft-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--cream);
+      margin-bottom: 1.75rem;
+    }
+
+    .ft-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.25rem auto;
+      opacity: 0.45;
+    }
+
+    .ft-info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ft-info li {
+      font-size: 0.85rem;
+      color: var(--cream-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+    }
+
+    .ft-info li strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .ft-info a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .wifi-box {
+      background: var(--black-card);
+      border: 1px solid rgba(201,168,76,0.45);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+    }
+
+    .wifi-icon { font-size: 1.5rem; }
+
+    .wifi-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gold);
+      margin-bottom: 0.15rem;
+    }
+
+    .wifi-pw {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.5px;
+    }
+
+    .ft-insta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .ft-afiyet {
+      margin-top: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--cream-muted);
+    }
+
+    .ft-copy {
+      margin-top: 0.75rem;
+      font-size: 0.65rem;
+      color: rgba(245,240,232,0.18);
+    }
+
+    /* ============================================
+       NARGILE CARD ATMOSPHERIC IMAGES
+       Each card gets a hookah-themed bg at low
+       opacity so text stays fully readable
+    ============================================ */
+    #nargile .card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #nargile .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity var(--tr);
+    }
+
+    @media (hover: hover) {
+      #nargile .card:hover::before { opacity: 0.2; }
+    }
+
+    /* Rotate 3 hookah-themed images across the 10 cards */
+    #nargile .card:nth-child(3n+1)::before {
+      background-image: url('https://images.unsplash.com/photo-1574027600054-0b0c2e6b7b84?w=500&q=55');
+    }
+    #nargile .card:nth-child(3n+2)::before {
+      background-image: url('https://images.unsplash.com/photo-1583336316429-cf6e04fd6e71?w=500&q=55');
+    }
+    #nargile .card:nth-child(3n)::before {
+      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=55');
+    }
+
+    /* All card children sit above the bg layer */
+    #nargile .card > * { position: relative; z-index: 1; }
+
+    /* ============================================
+       RESPONSIVE — TABLET  ≥ 768 px
+    ============================================ */
+    @media (min-width: 768px) {
+      .pw {
+        max-width: 860px;
+        box-shadow: 0 0 0 1px rgba(201,168,76,0.1), 0 0 80px rgba(0,0,0,0.85);
+      }
+
+      .header-hero  { height: 300px; }
+
+      .cat-hero               { height: 270px; }
+      #nargile .cat-hero      { height: 400px; }
+
+      .cat-hero-title           { font-size: 2rem; }
+      #nargile .cat-hero-title  { font-size: 2.6rem; }
+      .cat-hero-overlay         { padding: 1.75rem 2rem; }
+
+      .cat-nav a { padding: 0 1.2rem; font-size: 0.76rem; }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1.25rem 1.5rem;
+        gap: 0.8rem;
+      }
+      #nargile .menu-grid { gap: 1rem; }
+
+      .item-name        { font-size: 0.97rem; }
+      #nargile .item-name { font-size: 1.03rem; }
+    }
+
+    /* ============================================
+       RESPONSIVE — DESKTOP  ≥ 1024 px
+    ============================================ */
+    @media (min-width: 1024px) {
+      .pw {
+        max-width: 1160px;
+        box-shadow: 0 0 0 1px rgba(201,168,76,0.12), 0 0 120px rgba(0,0,0,0.9);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .site-header        { padding: 3rem 2rem 0; }
+      .logo               { width: 108px; height: 108px; }
+      .site-title         { font-size: 2.5rem; }
+      .site-sub           { font-size: 0.75rem; letter-spacing: 2.5px; }
+      .header-brand       { padding-bottom: 2.25rem; gap: 1rem; }
+      .header-hero        { height: 400px; }
+
+      /* Category heroes */
+      .cat-hero             { height: 320px; }
+      #nargile .cat-hero    { height: 480px; }
+
+      .cat-hero-title           { font-size: 2.3rem; }
+      #nargile .cat-hero-title  { font-size: 3.1rem; }
+      .cat-hero-overlay         { padding: 2.25rem 3.5rem; }
+
+      /* Nav */
+      .cat-nav            { justify-content: center; }
+      .cat-nav a          { padding: 0 1.6rem; font-size: 0.8rem; letter-spacing: 0.8px; }
+
+      /* 3-column card grid */
+      .menu-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 1.75rem 2.75rem;
+        gap: 1.1rem;
+      }
+      #nargile .menu-grid { gap: 1.25rem; padding: 2rem 2.75rem; }
+
+      .item-name          { font-size: 1rem; }
+      #nargile .item-name { font-size: 1.05rem; }
+      .item-price         { font-size: 0.92rem; }
+
+      .gap { height: 2.5rem; }
+
+      /* Footer */
+      footer              { padding: 3.5rem 4rem 5rem; }
+      .ft-info            { flex-direction: row; flex-wrap: wrap;
+                            justify-content: center; gap: 0.5rem 2.5rem; }
+      .wifi-box           { max-width: 320px; margin: 1.5rem auto; }
+    }
+
+    /* ============================================
+       RESPONSIVE — WIDE  ≥ 1280 px
+       Give the wrapper a little breathing room
+       so it doesn't press against viewport edges
+    ============================================ */
+    @media (min-width: 1280px) {
+      .pw { margin: 1.5rem auto; border-radius: 12px 12px 0 0; }
+      .site-header { border-radius: 12px 12px 0 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="pw">
+
+<!-- ================================================
+     HEADER
+================================================ -->
+<header class="site-header">
+  <div class="header-brand">
+
+    <!-- LOGO IMAGE -->
+    <img src="https://res.cloudinary.com/dkjslszjo/image/upload/v1775913525/WhatsApp_Image_2026-04-11_at_16.16.31_mhpu9l.jpg"
+         alt="Nature Coffee Home"
+         class="logo-img">
+
+    <h1 class="site-title">Nature Coffee Home</h1>
+    <p class="site-sub">3rd Wave Coffee Home &bull; Nargile &amp; Kahve</p>
+  </div>
+
+</header>
+
+<!-- ================================================
+     STICKY CATEGORY NAV
+================================================ -->
+<nav class="cat-nav" aria-label="Menü kategorileri" id="main-nav">
+  <a href="#nargile" class="active"><span class="em">💨</span><span>Nargile</span></a>
+  <a href="#sicak"><span class="em">☕</span><span>Sıcak</span></a>
+  <a href="#soguk"><span class="em">🧊</span><span>Soğuk</span></a>
+  <a href="#tatli"><span class="em">🍰</span><span>Tatlı</span></a>
+  <a href="#yiyecek"><span class="em">🍽️</span><span>Yiyecek</span></a>
+  <a href="#dondurma"><span class="em">🍦</span><span>Dondurma</span></a>
+</nav>
+
+<!-- ================================================
+     MAIN MENU
+================================================ -->
+<main>
+
+  <!-- ══════════════════════════════════════
+       NARGİLE  ★  HERO CATEGORY
+  ══════════════════════════════════════ -->
+  <section id="nargile" class="cat-section">
+    <div class="cat-hero">
+      <img src="https://res.cloudinary.com/dkjslszjo/image/upload/v1775913712/pexels-107014568-9544264_apq8k1.jpg"
+           alt="Nargile" loading="lazy" width="1200" height="600">
+      <div class="cat-hero-overlay">
+        <h2 class="cat-hero-title">💨 Nargile</h2>
+        <p class="cat-hero-desc">Premium tütün seçkimiz ve özenle hazırlanan nargile deneyimi</p>
+      </div>
+    </div>
+    <div class="cat-accent"></div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Blonde Nargile</div>
+          <div class="item-price">400 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Kapi · Vişne · Anason</div>
+          <div class="item-price">400 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Kapi Anason Lüle</div>
+          <div class="item-price">350 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Blonde Lüle</div>
+          <div class="item-price">350 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Musthave</div>
+          <div class="item-price">450 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Jam · Brusko</div>
+          <div class="item-price">450 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Holister</div>
+          <div class="item-price">450 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Spectrum</div>
+          <div class="item-price">500 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Bonche · Tangiers · Kraken</div>
+          <div class="item-price">600 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Dark Lüle</div>
+          <div class="item-price">400 ₺</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gap"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SICAK İÇECEKLER
+  ══════════════════════════════════════ -->
+  <section id="sicak" class="cat-section">
+    <div class="cat-hero">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
+           alt="Sıcak İçecekler" loading="lazy" width="800" height="500">
+      <div class="cat-hero-overlay">
+        <h2 class="cat-hero-title">☕ Sıcak İçecekler</h2>
+        <p class="cat-hero-desc">3. dalga kahve kültürü ile hazırlanan özel içeceklerimiz</p>
+      </div>
+    </div>
+    <div class="cat-accent"></div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Çay</div>
+          <div class="item-price">30 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Türk Kahvesi</div>
+          <div class="item-price">100 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Tarz-ı Hususi Türk Kahvesi</div>
+          <div class="item-price">120 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Sütlü Türk Kahvesi</div>
+          <div class="item-price">120 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Duble Çay</div>
+          <div class="item-price">50 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Sahlep</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Ballı Süt</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Gerçek Sütlü Nescafe</div>
+          <div class="item-price">120 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Bitki Çayı</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Sıcak Çikolata</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Americano</div>
+          <div class="item-price">160 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Latte</div>
+          <div class="item-price">175 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Aromalı — Latte · Cappuccino · Americano</div>
+          <div class="item-price">180 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Filter Coffee</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+    </div>
+    <div class="gap"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SOĞUK İÇECEKLER
+  ══════════════════════════════════════ -->
+  <section id="soguk" class="cat-section">
+    <div class="cat-hero">
+      <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80"
+           alt="Soğuk İçecekler" loading="lazy" width="800" height="500">
+      <div class="cat-hero-overlay">
+        <h2 class="cat-hero-title">🧊 Soğuk İçecekler</h2>
+        <p class="cat-hero-desc">Serinleten içecekler, doğanın ferahlığıyla</p>
+      </div>
+    </div>
+    <div class="cat-accent"></div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Su</div>
+          <div class="item-price">35 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Soda</div>
+          <div class="item-price">60 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Meyveli Soda</div>
+          <div class="item-price">75 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Capri Sun</div>
+          <div class="item-price">75 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Limonata</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Türk Kahvesi Suyu</div>
+          <div class="item-price">15 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Ice Latte</div>
+          <div class="item-price">175 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Ice Americano</div>
+          <div class="item-price">160 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Frappe — Çilek · Çikolata</div>
+          <div class="item-price">175 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Aromalı — Latte · Americano</div>
+          <div class="item-price">180 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Mango Passion</div>
+          <div class="item-price">180 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Coca Cola · Sprite · Zero</div>
+          <div class="item-price">100 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Red Bull</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Churchill</div>
+          <div class="item-price">75 ₺</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gap"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TATLI VE PASTALAR
+  ══════════════════════════════════════ -->
+  <section id="tatli" class="cat-section">
+    <div class="cat-hero">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80"
+           alt="Tatlı ve Pastalar" loading="lazy" width="800" height="500">
+      <div class="cat-hero-overlay">
+        <h2 class="cat-hero-title">🍰 Tatlı ve Pastalar</h2>
+        <p class="cat-hero-desc">El yapımı tatlılarımız, her lokmada mutluluk</p>
+      </div>
+    </div>
+    <div class="cat-accent"></div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Magnolya Muz Çilek</div>
+          <div class="item-price">160 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Sufle</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-hot">🔥 Özel</span></div>
+      </div>
+
+    </div>
+    <div class="gap"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       YİYECEKLER
+  ══════════════════════════════════════ -->
+  <section id="yiyecek" class="cat-section">
+    <div class="cat-hero">
+      <img src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=800&q=80"
+           alt="Yiyecekler" loading="lazy" width="800" height="500">
+      <div class="cat-hero-overlay">
+        <h2 class="cat-hero-title">🍽️ Yiyecekler</h2>
+        <p class="cat-hero-desc">Lezzetli atıştırmalıklar ve hafif yemekler</p>
+      </div>
+    </div>
+    <div class="cat-accent"></div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Sıcak Sandviç · Karışık Tost</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Soğuk Sandviç · Kaşarlı Tost</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Yer Fıstık Bar Tadım</div>
+          <div class="item-price">40 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Çerez</div>
+          <div class="item-price">200 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Antep Fıstıklı Bar</div>
+          <div class="item-price">100 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Patates Normal</div>
+          <div class="item-price">150 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Patates Duble</div>
+          <div class="item-price">160 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+    </div>
+    <div class="gap"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       DONDURMA
+  ══════════════════════════════════════ -->
+  <section id="dondurma" class="cat-section">
+    <div class="cat-hero">
+      <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&q=80"
+           alt="Dondurma" loading="lazy" width="800" height="500">
+      <div class="cat-hero-overlay">
+        <h2 class="cat-hero-title">🍦 Dondurma</h2>
+        <p class="cat-hero-desc">Serinleten dondurma çeşitlerimiz</p>
+      </div>
+    </div>
+    <div class="cat-accent"></div>
+
+    <div class="menu-grid">
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Magnum</div>
+          <div class="item-price">120 ₺</div>
+        </div>
+        <div class="badges"><span class="b b-pop">⭐ En Çok Tercih Edilen</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Cornetto</div>
+          <div class="item-price">110 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Nogger</div>
+          <div class="item-price">100 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Plombir</div>
+          <div class="item-price">140 ₺</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="item-name">Algida</div>
+          <div class="item-price">75 ₺</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gap"></div>
+  </section>
+
+</main>
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer>
+  <div class="ft-logo">
+    <!-- Footer logo (duplicate SVG with unique path IDs) -->
+    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="#1a2e1a"/>
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#c9a84c" stroke-width="1.8"/>
+      <circle cx="50" cy="50" r="43.5" fill="none" stroke="#c9a84c" stroke-width="0.6" stroke-dasharray="3.5 2.2" opacity="0.7"/>
+      <defs>
+        <path id="ta2" d="M 16,50 A 34,34 0 0 1 84,50"/>
+        <path id="ba2" d="M 12,53 A 38,38 0 0 0 88,53"/>
+      </defs>
+      <rect x="47" y="63" width="6" height="9" rx="1.5" fill="white" opacity="0.92"/>
+      <polygon points="50,40 36,63 64,63" fill="white" opacity="0.88"/>
+      <polygon points="50,32 38,53 62,53" fill="white" opacity="0.93"/>
+      <polygon points="50,23 41,42 59,42" fill="white"/>
+      <polygon points="50,15 45.5,26 54.5,26" fill="white"/>
+      <text font-family="Georgia,serif" font-size="10.5" fill="white" font-weight="bold" letter-spacing="4">
+        <textPath href="#ta2" startOffset="50%" text-anchor="middle">NATURE</textPath>
+      </text>
+      <text font-family="Georgia,serif" font-size="5.6" fill="#c9a84c" font-weight="600" letter-spacing="0.9">
+        <textPath href="#ba2" startOffset="50%" text-anchor="middle">3RD WAVE COFFEE HOME</textPath>
+      </text>
+      <circle cx="4"  cy="50" r="2" fill="#c9a84c" opacity="0.55"/>
+      <circle cx="96" cy="50" r="2" fill="#c9a84c" opacity="0.55"/>
+    </svg>
+  </div>
+
+  <p class="ft-name">Nature Coffee Home</p>
+  <div class="ft-divider"></div>
+
+  <ul class="ft-info">
+    <li>
+      <span>📍</span>
+      <span>Güzelyalı Mah. 81163 Sk. Çukurova / Adana</span>
+    </li>
+    <li>
+      <span>📞</span>
+      <a href="tel:+905551929262"><strong>0555 192 92 62</strong></a>
+    </li>
+    <li>
+      <span>🕐</span>
+      <span>Her gün <strong>11:30</strong> — <strong>02:00</strong></span>
+    </li>
+  </ul>
+
+  <a class="ft-insta"
+     href="https://instagram.com/naturecoffeehome"
+     target="_blank" rel="noopener noreferrer">
+    <span>📸</span>
+    <span>@naturecoffeehome</span>
+  </a>
+
+  <div class="ft-divider"></div>
+  <p class="ft-afiyet">Afiyet Olsun 🌿</p>
+  <p class="ft-copy">© 2024 Nature Coffee Home · Adana</p>
+</footer>
+
+</div><!-- /.pw -->
+
+<!-- ================================================
+     JAVASCRIPT
+================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.cat-section'));
+  var navLinks  = Array.prototype.slice.call(document.querySelectorAll('.cat-nav a'));
+  var nav       = document.getElementById('main-nav');
+  var NAV_H     = nav.offsetHeight || 52;
+
+  /* ── Entrance fade-in ── */
+  var fadeObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.04, rootMargin: '0px 0px -30px 0px' });
+
+  sections.forEach(function (s) {
+    // Sections already in the viewport on load become visible immediately
+    var r = s.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      s.classList.add('vis');
+    } else {
+      fadeObs.observe(s);
+    }
+  });
+
+  /* ── Active nav highlight ── */
+  function activateLink(id) {
+    navLinks.forEach(function (a) {
+      var isMatch = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('active', isMatch);
+      if (isMatch) {
+        var offset = a.offsetLeft - (nav.offsetWidth / 2) + (a.offsetWidth / 2);
+        nav.scrollTo({ left: offset, behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Pick the topmost section whose top edge is at or below the nav bottom
+  var navObs = new IntersectionObserver(function (entries) {
+    // Collect all currently-intersecting sections and pick the one nearest the top
+    var visible = sections.filter(function (s) {
+      var r = s.getBoundingClientRect();
+      return r.top < window.innerHeight * 0.6 && r.bottom > NAV_H;
+    });
+    if (visible.length) activateLink(visible[0].id);
+  }, {
+    threshold: [0, 0.1, 0.25, 0.5],
+    rootMargin: '-' + NAV_H + 'px 0px -35% 0px'
+  });
+
+  sections.forEach(function (s) { navObs.observe(s); });
+
+  /* ── Smooth scroll on nav click ── */
+  navLinks.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - NAV_H;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
