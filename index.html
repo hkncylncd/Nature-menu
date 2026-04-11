@@ -479,45 +479,6 @@
       color: rgba(245,240,232,0.18);
     }
 
-    /* ============================================
-       NARGILE CARD ATMOSPHERIC IMAGES
-       Each card gets a hookah-themed bg at low
-       opacity so text stays fully readable
-    ============================================ */
-    #nargile .card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    #nargile .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0.13;
-      pointer-events: none;
-      z-index: 0;
-      transition: opacity var(--tr);
-    }
-
-    @media (hover: hover) {
-      #nargile .card:hover::before { opacity: 0.2; }
-    }
-
-    /* Rotate 3 hookah-themed images across the 10 cards */
-    #nargile .card:nth-child(3n+1)::before {
-      background-image: url('https://images.unsplash.com/photo-1574027600054-0b0c2e6b7b84?w=500&q=55');
-    }
-    #nargile .card:nth-child(3n+2)::before {
-      background-image: url('https://images.unsplash.com/photo-1583336316429-cf6e04fd6e71?w=500&q=55');
-    }
-    #nargile .card:nth-child(3n)::before {
-      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=55');
-    }
-
-    /* All card children sit above the bg layer */
-    #nargile .card > * { position: relative; z-index: 1; }
 
     /* ============================================
        RESPONSIVE — TABLET  ≥ 768 px
